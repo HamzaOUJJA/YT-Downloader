@@ -147,6 +147,11 @@ def get_file(job_id):
     return send_file(filepath, as_attachment=True, download_name=job["filename"])
 
 
+@app.route("/")
+def home():
+    return jsonify({"status": "online", "message": "YT Downloader API is running"}), 200
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
     
