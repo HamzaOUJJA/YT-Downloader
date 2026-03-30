@@ -168,7 +168,7 @@ export default function App() {
 
 
 
-    
+
     return (
         <div className="shell">
             <header className="topbar">
@@ -357,7 +357,7 @@ export default function App() {
                                 <a href="mailto:hamzaoujja08@gmail.com" className="dev-link">
                                     <Icon name="mail" size={18} /> Email
                                 </a>
-                                <a href="https://github.com/yourusername/your-repo" target="_blank" rel="noreferrer" className="dev-link">
+                                <a href="https://github.com/HamzaOUJJA" target="_blank" rel="noreferrer" className="dev-link">
                                     <Icon name="github" size={18} /> GitHub
                                 </a>
                                 <a href="https://www.linkedin.com/in/hamza-oujja" target="_blank" rel="noreferrer" className="dev-link">
