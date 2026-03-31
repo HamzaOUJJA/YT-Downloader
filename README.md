@@ -5,7 +5,7 @@
 🌐 **Live Demo:** [https://yt-down-hamza-oujja.vercel.app/](https://yt-down-hamza-oujja.vercel.app/)
 
 
-![YT-Downloader UI](./preview.png)
+![YT-Downloader UI](./Preview_1.png)
 
 ---
 
