@@ -87,14 +87,21 @@ function WaveAnimation({ active }) {
 function ProgressBar({ progress, status }) {
     const isError = status === "error";
     const isDone = status === "done";
+    const isUploading = status === "uploading";
     return (
         <div className="progress-wrapper">
             <div className="progress-header">
                 <span className="progress-label">
-                    {isError ? "Download failed" : isDone ? "Download complete" : "Downloading…"}
+                    {isError
+                        ? "Upload failed"
+                        : isDone
+                        ? "Upload complete"
+                        : isUploading
+                        ? "Uploading to Google Drive…"
+                        : "Downloading…"}
                 </span>
-                <span className={`progress-pct ${isError ? "err" : isDone ? "ok" : ""}`}>
-                    {isError ? "Error" : `${Math.round(progress)}%`}
+                <span className={`progress-pct ${isError ? "err" : isDone || isUploading ? "ok" : ""}`}>
+                    {isError ? "Error" : isDone ? "100%" : `${Math.round(progress)}%`}
                 </span>
             </div>
             <div className="progress-track">
@@ -271,6 +278,11 @@ export default function App() {
                                         <div className="status-row"><span className="sk">Format</span><span className="sv">{mode.toUpperCase()}</span></div>
                                         <div className="status-row"><span className="sk">Status</span><span className={`sv pill ${job.status}`}>{job.status}</span></div>
                                     </div>
+                                    {job.drive_url && (
+                                        <div className="drive-link">
+                                            Uploaded to Google Drive: <a href={job.drive_url} target="_blank" rel="noreferrer">Open file in Drive</a>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         )}

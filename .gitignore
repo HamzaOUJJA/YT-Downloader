@@ -1,3 +1,7 @@
 venv
 node_modules
 .env
+credentials.json
+client_secret.json
+token.pickle
+credentials.json

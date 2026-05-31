@@ -42,7 +42,7 @@ YT-Downloader is a full-stack web application with a **React** frontend and a **
 - 📊 **Real-time Progress** — live progress bar updated via polling (every 600ms)
 - 🌊 **Wave Animation** — visual feedback while a download is in progress
 - 🔄 **Background Job System** — each download runs in a dedicated thread
-- 🧹 **Auto Cleanup** — downloaded files are automatically deleted after 5 minutes
+- 🧹 **Auto Cleanup** — downloaded files are automatically deleted after 10 minutes
 - 📱 **Responsive Design** — works on desktop, tablet, and mobile browsers
 - 🌐 **Multi-platform Support** — compatible with YouTube, Instagram, TikTok, Twitter, Facebook, and more (via yt-dlp)
 
@@ -302,6 +302,18 @@ For production, replace with your deployed backend URL:
 VITE_API_URL=https://your-backend.vercel.app/api
 ```
 
+### Backend — environment variables
+
+The backend reads Google Drive credentials from environment variables when Drive upload is enabled.
+
+```bash
+export GOOGLE_APPLICATION_CREDENTIALS=/path/to/credentials.json
+export GDRIVE_FOLDER_ID=optional-google-drive-folder-id
+```
+
+- `GOOGLE_APPLICATION_CREDENTIALS` should point to a Google service account JSON key.
+- `GDRIVE_FOLDER_ID` is optional; use it to upload directly into a specific Drive folder.
+
 ---
 
 ## How It Works
@@ -316,7 +328,7 @@ VITE_API_URL=https://your-backend.vercel.app/api
 
 5. **File delivery** — Once `status === "done"`, the frontend enables the "Save File" button. Clicking it triggers `GET /api/file/:id`, which streams the file to the browser as an attachment.
 
-6. **Cleanup** — A daemon thread runs every 60 seconds and deletes any file in the `downloads/` folder that was created more than 5 minutes ago, keeping disk usage low.
+6. **Cleanup** — A daemon thread runs every 60 seconds and deletes any file in the `downloads/` folder that was created more than 10 minutes ago, keeping disk usage low.
 
 ### Format Selection Logic
 
